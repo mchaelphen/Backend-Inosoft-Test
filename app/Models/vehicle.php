@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Vehicle extends Eloquent
 {
     protected $connection = 'mongodb';
-    protected $collection = 'laptop';
+    protected $collection = 'vehicle';
     /**
      * The attributes that are mass assignable.
      *
