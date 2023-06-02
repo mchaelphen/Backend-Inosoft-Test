@@ -43,7 +43,8 @@ class VehicleController extends Controller
         return response()->json($result, $result['status']);
     }
 
-    public function createVehicle(Request $request, Response $response) {
+    public function createVehicle(Request $request, Response $response) 
+    {
         $result = ['status' => 201, 'message' => 'Vehicle created successfully'];
         $data = $request->only([
             'manufacturer',
