@@ -15,8 +15,10 @@ class VehicleRepository
         $vehicle->color = $data['color'];
         $vehicle->price = $data['price'];
         $vehicle->stock = $data['stock'];
-        
+        $vehicle->isCar = $data['isCar'];
         $vehicle->save();
+
+        if ($vehic)
 
         return $vehicle->fresh();
     }
