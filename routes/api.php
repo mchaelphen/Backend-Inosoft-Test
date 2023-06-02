@@ -20,10 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/vehicle', [VehicleController::class, 'getVehicle'])->name('vehicle.list');
-// Route::get('/vehicle/{id}', 'App\Http\Controllers\VehicleController@getVehicleById')->name('vehicle.detail');
+Route::get('/vehicle/{id}', [VehicleController::class, 'getVehicleById'])->name('vehicle.detail');
 Route::post('/vehicle', [VehicleController::class, 'createVehicle'])->name('vehicle.push');
 
-Route::fallback(function(){
+Route::fallback(function() {
     return response()->json([
         'message' => 'Page Not Found. If error persists, contact mchael@website.com'], 404);
 });
