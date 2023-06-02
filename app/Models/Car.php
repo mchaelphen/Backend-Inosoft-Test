@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Vehicle extends Eloquent
+class Car extends Vehicle
 {
     protected $connection = 'mongodb';
-    protected $collection = 'laptop';
+    protected $collection = 'car';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'manufacturer', 'series', 'releaseYear', 'color', 'price', 'stock'
+        'machineNo', 'transmissionType', 'passangerSeat'
     ];
 }
