@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('manufacturer');
             $table->string('series');
             $table->string('releaseYear');
+            $table->tinyInteger('numOfTires');
+            $table->string('machine');
+            $table->tinyInteger('passengerSeats');
+            $table->string('transmissionType');
             $table->string('color');
             $table->decimal('price');
             $table->unsignedInteger('stock');

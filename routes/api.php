@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\MotorcycleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/vehicle', [VehicleController::class, 'getVehicle'])->name('vehicle.list');
 Route::get('/vehicle/{id}', [VehicleController::class, 'getVehicleById'])->name('vehicle.detail');
+Route::get('/stock', [VehicleController::class, 'getVehiclesWithStock'])->name('vehicles.stock');
 Route::post('/vehicle', [VehicleController::class, 'createVehicle'])->name('vehicle.push');
 
 Route::fallback(function() {

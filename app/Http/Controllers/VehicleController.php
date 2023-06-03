@@ -19,7 +19,7 @@ class VehicleController extends Controller
     {
         $result = ['status' => 200, 'message' => 'Get vehicles success'];
         try {
-            $result['data'] = $this->vehicleService->getAllVehicle();
+            $result['data'] = $this->vehicleService->getVehicles();
         } catch (RequestException $ex) {
             return response()->json([
                 'status' => 401,
@@ -50,11 +50,15 @@ class VehicleController extends Controller
             'manufacturer',
             'series',
             'releaseYear',
-            'color',
-            'price',
+            'numOfTires', 
+            'machine', 
+            'transmissionType', 
+            'passengerSeat', 
+            'color', 
+            'price', 
             'stock'
         ]);
-
+        
         try {
             $result['data'] = $this->vehicleService->saveVehicleData($data);
         } catch (Exception $e) {
@@ -66,6 +70,26 @@ class VehicleController extends Controller
             ], $result['status']);
         }
 
+        return response()->json($result, $result['status']);
+    }
+
+    public function getVehiclesWithStock(Request $request, Response $response)
+    {
+        $result = ['status' => 200, 'message' => 'Get vehicle success'];
+        $numOfTires = $request->numOfTires;
+        
+        if ($numOfTires != "2" && $numOfTires != "4") {
+            $numOfTires = '';
+        }
+        
+        try {
+            $result['data'] = $this->vehicleService->getVehiclesWithStock($numOfTires);
+        } catch (RequestException $ex) {
+            return response()->json([
+                'status' => 401,
+                'message' => 'Bad request'
+            ]);
+        }
         return response()->json($result, $result['status']);
     }
 }

@@ -23,30 +23,41 @@ class VehicleService
             'manufacturer'=>'required',
             'series'=>'required',
             'releaseYear'=>'required',
+            'numOfTires'=>'required',
+            'machine'=>'required',
+            'transmissionType'=>'required',
             'color'=>'required',
             'price'=>'required',
-            'stock'=>'required'
+            'stock'=>'required',
         ]);
-
+        
         if ($validator->fails()) {
             throw new InvalidArgumentException($validator->errors()->first());
-       }
+        }
+       
+        $result = $this->vehicleRepository->saveVehicle($data);
 
-       $result = $this->vehicleRepository->saveVehicle($data);
+        return $result;
+    }
+    
+    public function getVehicle($id)
+    {
+        $result = $this->vehicleRepository->getVehicle($id);
 
-       return $result;
+        return $result;
     }
 
-    public function getAllVehicle()
+    public function getVehicles()
     {
         $result = $this->vehicleRepository->getVehicles();
 
         return $result;
     }
 
-    public function getVehicle($id)
+
+    public function getVehiclesWithStock($numOfTires)
     {
-        $result = $this->vehicleRepository->getVehicle($id);
+        $result = $this->vehicleRepository->getVehiclesWithStock($numOfTires);
 
         return $result;
     }
