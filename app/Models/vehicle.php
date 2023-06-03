@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Vehicle extends Eloquent
@@ -18,4 +17,6 @@ class Vehicle extends Eloquent
         'transmissionType', 'passengerSeat', 'color', 'price', 'stock'
     ];
 
+    CONST MOTORCYCLE = 2;
+    CONST CAR = 4;
 }

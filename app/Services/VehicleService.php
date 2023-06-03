@@ -1,6 +1,6 @@
 <?php
 namespace App\Services;
-
+use App\Models\Vehicle;
 use App\Repositories\VehicleRepository;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -57,6 +57,11 @@ class VehicleService
 
     public function getVehiclesWithStock($numOfTires)
     {
+        
+        if ($numOfTires != Vehicle::MOTORCYCLE && $numOfTires != Vehicle::CAR) {
+            $numOfTires = '';
+        }
+
         $result = $this->vehicleRepository->getVehiclesWithStock($numOfTires);
 
         return $result;

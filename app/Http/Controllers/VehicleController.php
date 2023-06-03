@@ -78,10 +78,6 @@ class VehicleController extends Controller
         $result = ['status' => 200, 'message' => 'Get vehicle success'];
         $numOfTires = $request->numOfTires;
         
-        if ($numOfTires != "2" && $numOfTires != "4") {
-            $numOfTires = '';
-        }
-        
         try {
             $result['data'] = $this->vehicleService->getVehiclesWithStock($numOfTires);
         } catch (RequestException $ex) {

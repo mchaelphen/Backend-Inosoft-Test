@@ -40,14 +40,12 @@ class VehicleRepository
 
     public function getVehiclesWithStock($numOfTires)
     {
-        $vehicle = Vehicle::Select('manufacturer', 'series', 'releaseYear', 'numOfTires', 'machine', 
-        'transmissionType', 'passengerSeat', 'color', 'price', 'stock');
+        $vehicle = Vehicle::all()->where('stock', '>', 0);
         
         if ($numOfTires != '') {
-            $vehicle->where('numOfTires', '=', $numOfTires);
+            $vehicle = $vehicle->where('numOfTires', '=', $numOfTires);
         }
-        $vehicle->where('stock', '!=', 0)->get();
-
+        
         return $vehicle;
     }
 }
