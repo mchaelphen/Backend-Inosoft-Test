@@ -12,8 +12,9 @@
 This app use:
 - Laravel 9, PHP 8, MongoDB 6
 
-I've prepared a Postman Collection for all the routes available.
-Import the collection into Postman App for easier review of the app.
+I've prepared a Postman Collection for all the routes available
+Import the collection into Postman App for easier review of the app
+This file is the Postman collection `Inosoft.postman_collection.json`
 
 The app implement Service Repository Pattern
 Strict class type are on and configured within App/Providers/AppServiceProvider
