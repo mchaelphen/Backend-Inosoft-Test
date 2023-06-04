@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,19 +16,29 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+
 });
 
 //Product
 Route::get('/vehicle', [VehicleController::class, 'getVehicle'])->name('vehicle.list');
 Route::get('/vehicle/{id}', [VehicleController::class, 'getVehicleById'])->name('vehicle.detail');
 Route::get('/stock', [VehicleController::class, 'getVehiclesWithStock'])->name('vehicles.stock');
-Route::post('/vehicle', [VehicleController::class, 'createVehicle'])->name('vehicle.push');
 
 // Transaction
 Route::get('/transaction', [TransactionController::class, 'getTransactions'])->name('transaction.list');
-Route::post('/transaction', [TransactionController::class, 'createTransaction'])->name('transaction.push');
+
+Route::middleware('jwt.verify')->group(function () {
+    Route::post('/vehicle', [VehicleController::class, 'createVehicle'])->name('vehicle.push');
+    Route::post('/transaction', [TransactionController::class, 'createTransaction'])->name('transaction.push');
+});
+
 
 Route::fallback(function() {
     return response()->json([
